@@ -26,9 +26,9 @@ const steps = [
 
 const HowItWorks: React.FC = () => {
   return (
-    <section className="bg-white py-16">
+    <section className=" bg-gradient-to-b from-cyan-50 via-white to-cyan-50 py-16">
       <div className="container mx-auto px-6 md:px-12 text-center">
-        <h2 className="text-4xl font-bold mb-12">How It Works</h2>
+        <h2 className="text-4xl text-blue-600 font-bold mb-12">How It Works</h2>
         <div className="flex flex-col md:flex-row justify-center items-start md:space-x-12 space-y-12 md:space-y-0">
           {steps.map((step, index) => (
             <motion.div

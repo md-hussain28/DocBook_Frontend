@@ -44,7 +44,7 @@ const Doctors: React.FC = () => {
   });
 
   return (
-    <div className="bg-cyan-100 min-h-screen pt-16 px-4 md:px-8">
+    <div className="bg-cyan-50 min-h-screen pt-16 px-4 md:px-8">
       <Head
         setSearch={setSearch}
         setSpecialityFilter={setSpecialityFilter}

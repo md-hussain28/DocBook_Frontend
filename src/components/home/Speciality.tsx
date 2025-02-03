@@ -29,9 +29,9 @@ const Speciality: React.FC = () => {
   }, [isMobile, controls]);
 
   return (
-    <section className="py-12 bg-gradient-to-b from-blue-50 to-white">
+    <section className="py-12  bg-gradient-to-b from-cyan-50 via-white to-cyan-50">
       <div className="container mx-auto px-4 md:px-8 text-center">
-        <h2 className="text-3xl md:text-4xl font-bold mb-6 text-blue-800">
+        <h2 className="text-3xl md:text-4xl font-bold mb-6 text-blue-600">
           Find by Speciality
         </h2>
         <p className="text-base md:text-lg mb-8 text-gray-600">

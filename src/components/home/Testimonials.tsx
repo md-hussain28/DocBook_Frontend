@@ -72,9 +72,9 @@ const Testimonials: React.FC = () => {
   };
 
   return (
-    <section className="py-16 bg-gradient-to-b from-blue-100 via-white to-blue-100">
+    <section className="py-16 bg-gradient-to-b from-cyan-50 via-white to-cyan-50">
       <div className="container mx-auto px-6 md:px-12 relative">
-        <h2 className="text-4xl font-bold text-center mb-12 text-blue-800">
+        <h2 className="text-4xl font-bold text-center mb-12 text-blue-600">
           What Our Patients Say
         </h2>
         <div className="relative flex items-center justify-center">
