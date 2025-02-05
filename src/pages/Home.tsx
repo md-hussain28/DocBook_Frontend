@@ -6,7 +6,7 @@ import Speciality from '../components/home/Speciality.tsx';
 
 const Home = () => {
   return (
-    <div className="bg-cyan-50 w-full min-h-screen border-2 flex flex-col gap-8">
+    <div className="bg-cyan-50 w-full min-h-screen pt-4 flex flex-col gap-8">
       <Hero />
       <Speciality />
       <MeetOurDoctors />

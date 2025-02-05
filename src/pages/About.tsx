@@ -6,7 +6,7 @@ import about_image from '../assets/assets_frontend/about_image.png'; // Replace 
 
 const About: React.FC = () => {
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-16 pt-28 bg-gray-50">
       <div className="container mx-auto px-6 md:px-12 flex flex-col-reverse lg:flex-row items-center">
         {/* Text Content */}
         <div className="w-full lg:w-1/2 lg:pr-12 mt-12 lg:mt-0">

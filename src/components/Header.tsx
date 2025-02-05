@@ -1,125 +1,226 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+// Header.tsx
+import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { HiMenuAlt4, HiX } from 'react-icons/hi';
-import { motion, AnimatePresence } from 'framer-motion';
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+  useMotionValueEvent,
+} from 'framer-motion';
+import { FiUser, FiHome, FiUserX, FiInfo, FiPhone } from 'react-icons/fi';
 import Logo from '../assets/Logo.png';
 
 const navItems = [
-  { name: 'Home', to: '/' },
-  { name: 'Doctors', to: '/doctors' },
-  { name: 'About', to: '/about' },
-  { name: 'Contact', to: '/contact' },
+  { name: 'Home', to: '/', icon: <FiHome /> },
+  { name: 'Doctors', to: '/doctors', icon: <FiUserX /> },
+  { name: 'About', to: '/about', icon: <FiInfo /> },
+  { name: 'Contact', to: '/contact', icon: <FiPhone /> },
 ];
 
-const NavItem = ({ name, to }: { name: string; to: string }) => {
+interface NavItemProps {
+  name: string;
+  to: string;
+  isActive: boolean;
+  icon: React.ReactElement;
+  isMobile?: boolean;
+}
+
+const floatingVariants = {
+  hover: { y: -5, scale: 1.05 },
+  tap: { y: 0, scale: 0.95 },
+};
+
+const NavItem: React.FC<NavItemProps> = ({
+  name,
+  to,
+  isActive,
+  icon,
+  isMobile,
+}) => {
   return (
-    <Link to={to}>
-      <button className="relative  focus:outline-none">
-        <span
-          className="
-          button_top
-          block box-border
-          border-2 border-blue-400 rounded-md
-          px-2 py-0
-          bg-blue-100 text-blue-600 font-bold text-lg
-          transform translate-y-[-0.2em]
-          transition-transform duration-100 ease
-          hover:translate-y-[-0.33em]
-          active:translate-y-0
-          select-none
-        "
+    <motion.div
+      className="relative"
+      variants={!isMobile ? floatingVariants : undefined}
+      whileHover="hover"
+      whileTap="tap"
+    >
+      <Link to={to} className="block">
+        <div
+          className={`flex items-center space-x-2 ${
+            isActive ? 'text-blue-600' : 'text-gray-600'
+          } ${isMobile ? 'p-4 hover:bg-blue-50 rounded-lg' : ''}`}
         >
-          {name}
-        </span>
-      </button>
-    </Link>
+          {icon && <span className="text-xl">{icon}</span>}
+          <span
+            className={`text-lg font-medium ${isActive ? 'font-bold' : ''}`}
+          >
+            {name}
+          </span>
+          {isActive && !isMobile && (
+            <motion.div
+              className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-500"
+              layoutId="activeIndicator"
+              transition={{ type: 'spring', stiffness: 250, damping: 30 }}
+            />
+          )}
+        </div>
+      </Link>
+    </motion.div>
   );
 };
 
-const Header = () => {
+const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const { pathname } = useLocation();
+  const { scrollY } = useScroll();
 
-  const navVariants = {
-    hidden: { opacity: 0, y: '-100%' },
-    visible: {
-      opacity: 1,
-      y: '0%',
-      transition: { duration: 0.5, ease: 'easeInOut' },
+  useMotionValueEvent(scrollY, 'change', (latest) => {
+    setIsScrolled(latest > 50);
+  });
+
+  const headerVariants = {
+    scrolled: {
+      height: '70px',
+      backdropFilter: 'blur(12px)',
+      backgroundColor: 'rgba(255, 255, 255, 0.9)',
     },
-    exit: {
-      opacity: 0,
-      y: '-100%',
-      transition: { duration: 0.5, ease: 'easeInOut' },
+    normal: {
+      height: '90px',
+      backgroundColor: 'rgba(255, 255, 255, 1)',
     },
   };
 
-  return (
-    <header className="fixed w-full bg-white shadow-md z-50">
-      <div className="container mx-auto h-fit px-4 py-2 flex items-center justify-between">
-        <Link
-          to="/"
-          className="flex items-center text-2xl font-bold text-blue-600"
-        >
-          <img src={Logo} alt="Logo" className="h-10 w-fit mr-2" />
-        </Link>
+  const mobileMenuVariants = {
+    hidden: {
+      opacity: 0,
+      scale: 0.95,
+      transformOrigin: 'top right',
+      transition: { duration: 0.3 },
+    },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transformOrigin: 'top right',
+      transition: {
+        type: 'spring',
+        stiffness: 200,
+        damping: 25,
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  };
 
-        <nav className="hidden md:flex pt-1 h-fit space-x-8 ">
+  const mobileItemVariants = {
+    hidden: { x: 20, opacity: 0 },
+    visible: { x: 0, opacity: 1 },
+  };
+
+  return (
+    <motion.header
+      className="fixed w-full z-50 shadow-sm"
+      variants={headerVariants}
+      animate={isScrolled ? 'scrolled' : 'normal'}
+    >
+      <div className="container gap-8  mx-auto h-full px-2 flex items-center justify-between">
+        <motion.div
+          className="flex items-center"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <Link to="/" className="flex items-center space-x-2">
+            <motion.img
+              src={Logo}
+              alt="Logo"
+              className="h-12 w-auto"
+              whileHover={{ scale: 1.1 }}
+              transition={{ type: 'spring', stiffness: 300 }}
+            />
+          </Link>
+        </motion.div>
+
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex space-x-6 h-full items-center">
           {navItems.map((item) => (
-            <NavItem key={item.to} name={item.name} to={item.to} />
+            <NavItem
+              key={item.to}
+              name={item.name}
+              to={item.to}
+              icon={item.icon}
+              isActive={pathname === item.to}
+            />
           ))}
         </nav>
 
-        <div className="hidden md:block">
-          <Link
-            to="/profile"
-            className="px-6 py-2 bg-blue-500 text-white font-medium rounded-full shadow hover:bg-blue-600 transition duration-300"
-          >
-            Profile
-          </Link>
+        {/* Profile Button */}
+        <div className="hidden md:flex items-center space-x-4">
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <Link
+              to="/profile"
+              className="flex items-center space-x-2 px-6 py-2  text-white font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+            >
+              <FiUser className="text-lg" />
+              <span>Profile</span>
+            </Link>
+          </motion.div>
         </div>
 
+        {/* Mobile Menu Button */}
         <div className="md:hidden">
-          <button
+          <motion.button
             onClick={() => setIsOpen(!isOpen)}
-            className="text-blue-600 focus:outline-none"
+            className="p-2 rounded-full bg-gradient-to-r from-blue-100 to-purple-100"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
           >
-            {isOpen ? <HiX size={30} /> : <HiMenuAlt4 size={30} />}
-          </button>
+            {isOpen ? (
+              <HiX className="text-blue-600 w-8 h-8" />
+            ) : (
+              <HiMenuAlt4 className="text-blue-600 w-8 h-8" />
+            )}
+          </motion.button>
         </div>
       </div>
 
+      {/* Mobile Navigation */}
       <AnimatePresence>
         {isOpen && (
           <motion.nav
-            className="lg:hidden bg-white shadow-md"
+            className="md:hidden absolute top-full right-4 w-64 bg-white rounded-xl shadow-2xl overflow-hidden"
             initial="hidden"
             animate="visible"
-            exit="exit"
-            variants={navVariants}
+            exit="hidden"
+            variants={mobileMenuVariants}
           >
-            <div className="px-6 py-4 space-y-4">
+            <motion.div className="p-2 space-y-2">
               {navItems.map((item) => (
+                <motion.div key={item.to} variants={mobileItemVariants}>
+                  <NavItem
+                    name={item.name}
+                    to={item.to}
+                    icon={item.icon}
+                    isActive={pathname === item.to}
+                    isMobile
+                  />
+                </motion.div>
+              ))}
+              <motion.div variants={mobileItemVariants}>
                 <Link
-                  key={item.to}
-                  to={item.to}
-                  className="block text-lg text-blue-600 font-medium rounded hover:bg-blue-50 px-4 py-2"
+                  to="/profile"
+                  className="flex items-center space-x-2 p-4 text-blue-600 font-medium rounded-lg hover:bg-blue-50"
                   onClick={() => setIsOpen(false)}
                 >
-                  {item.name}
+                  <FiUser className="text-lg" />
+                  <span>My Profile</span>
                 </Link>
-              ))}
-              <Link
-                to="/profile"
-                className="block text-lg text-blue-600 font-medium rounded hover:bg-blue-50 px-4 py-2"
-                onClick={() => setIsOpen(false)}
-              >
-                Profile
-              </Link>
-            </div>
+              </motion.div>
+            </motion.div>
           </motion.nav>
         )}
       </AnimatePresence>
-    </header>
+    </motion.header>
   );
 };
 

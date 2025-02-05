@@ -1,5 +1,3 @@
-// src/pages/ContactPage.tsx
-
 import React from 'react';
 import ContactForm from '../components/contact/ContactForm';
 import MapSection from '../components/contact/MapSection';
@@ -7,7 +5,7 @@ import FAQs from '../components/contact/FAQs';
 
 const ContactPage: React.FC = () => {
   return (
-    <div className="bg-gray-50 min-h-screen">
+    <div className="bg-gray-50 min-h-screen pt-28">
       <header className="py-16 bg-blue-600 text-white text-center">
         <h1 className="text-4xl font-bold">Contact Us</h1>
         <p className="mt-4 text-lg">
