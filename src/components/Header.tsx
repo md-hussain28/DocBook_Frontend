@@ -61,7 +61,7 @@ const NavItem: React.FC<NavItemProps> = ({
             <motion.div
               className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-500"
               layoutId="activeIndicator"
-              transition={{ type: 'spring', stiffness: 250, damping: 30 }}
+              transition={{ type: 'spring', stiffness: 250, damping: 35 }}
             />
           )}
         </div>

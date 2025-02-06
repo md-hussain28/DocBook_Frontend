@@ -8,7 +8,7 @@ const Hero: React.FC = () => {
     <div className="px-4 rounded-b-4xl shadow-lg shadow-blue-500 pt-8  relative md:w-3/4 w-11/12 mt-20 h-fit mx-auto bg-gradient-to-r from-blue-500 to-indigo-600 flex items-center justify-center overflow-hidden">
       <div className="container mx-auto px-6 md:px-12 relative z-10">
         <div className="md:flex md:items-center h-fit ">
-          <div className="md:w-1/2 text-center md:text-left space-y-6 ">
+          <div className="md:w-1/2 text-center md:text-left space-y-6 pb-4">
             <motion.h1
               className="text-4xl md:text-6xl font-bold text-white leading-tight"
               initial={{ y: -50, opacity: 0 }}

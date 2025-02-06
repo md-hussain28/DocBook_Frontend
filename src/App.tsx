@@ -7,6 +7,8 @@ import About from './pages/About.tsx';
 import Contact from './pages/Contact.tsx';
 import Footer from './components/Footer.tsx';
 import BackToTop from './components/TopBut.tsx';
+import PageNotFound from './pages/PageNotFound.tsx';
+import UserProfile from './pages/MyProfile.tsx';
 
 function App(): ReactElement {
   return (
@@ -17,6 +19,8 @@ function App(): ReactElement {
         <Route path="/doctors" element={<Doctors />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/profile" element={<UserProfile />} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
       <Footer />
       <BackToTop />
