@@ -28,7 +28,7 @@ const Hero: React.FC = () => {
               your appointment hassle-free.
             </motion.p>
             <motion.button
-              className="mt-4 px-8 py-3 bg-yellow-400 text-blue-800 font-semibold rounded-full shadow-lg hover:bg-yellow-500 transition duration-300"
+              className="mt-4 px-8 py-3 bg-yellow-400 text-blue-800 font-semibold rounded-full shadow-lg hover:bg-gray-50 transition duration-300"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >

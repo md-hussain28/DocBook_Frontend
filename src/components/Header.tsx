@@ -8,12 +8,12 @@ import {
   useScroll,
   useMotionValueEvent,
 } from 'framer-motion';
-import { FiUser, FiHome, FiUserX, FiInfo, FiPhone } from 'react-icons/fi';
+import { FiUser, FiHome, FiUserPlus, FiInfo, FiPhone } from 'react-icons/fi';
 import Logo from '../assets/Logo.png';
 
 const navItems = [
   { name: 'Home', to: '/', icon: <FiHome /> },
-  { name: 'Doctors', to: '/doctors', icon: <FiUserX /> },
+  { name: 'Doctors', to: '/doctors', icon: <FiUserPlus /> },
   { name: 'About', to: '/about', icon: <FiInfo /> },
   { name: 'Contact', to: '/contact', icon: <FiPhone /> },
 ];
@@ -84,7 +84,7 @@ const Header: React.FC = () => {
     scrolled: {
       height: '70px',
       backdropFilter: 'blur(12px)',
-      backgroundColor: 'rgba(255, 255, 255, 0.9)',
+      backgroundColor: 'rgba(255, 255, 255, 0.3)',
     },
     normal: {
       height: '90px',
