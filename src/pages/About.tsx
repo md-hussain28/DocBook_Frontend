@@ -1,8 +1,6 @@
-// About.tsx
-
 import React from 'react';
 import { motion } from 'framer-motion';
-import about_image from '../assets/assets_frontend/about_image.png'; // Replace with your image path
+import about_image from '../assets/assets_frontend/about_image.png';
 
 const About: React.FC = () => {
   return (

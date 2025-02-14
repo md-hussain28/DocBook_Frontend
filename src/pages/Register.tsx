@@ -1,8 +1,8 @@
-// pages/Login.tsx
+// pages/Register.tsx
 import { motion } from 'framer-motion';
 import AuthForm from '../components/AuthForm';
 
-const Login = () => {
+const Register = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 flex items-center justify-center p-4">
       <motion.div
@@ -10,10 +10,10 @@ const Login = () => {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
       >
-        <AuthForm isLogin={true} />
+        <AuthForm isLogin={false} />
       </motion.div>
     </div>
   );
 };
 
-export default Login;
+export default Register;
