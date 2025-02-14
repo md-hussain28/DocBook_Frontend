@@ -14,9 +14,7 @@ import Logo from '../assets/Logo.png';
 const Footer: React.FC = () => {
   return (
     <footer className="bg-white text-gray-800 pt-10">
-      {/* Top Section */}
       <div className="relative mt-0 container z-10 mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-4 gap-12">
-        {/* Company Info */}
         <div className="space-y-6">
           <img src={Logo} alt="Logo" />
 
