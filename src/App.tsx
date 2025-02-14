@@ -44,6 +44,7 @@ import UserProfile from './pages/MyProfile';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import ProtectedRoute from './components/ProtectedRoute';
+import DoctorProfile from './pages/DocProfile';
 
 function App(): ReactElement {
   return (
@@ -52,6 +53,7 @@ function App(): ReactElement {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/doctors" element={<Doctors />} />
+        <Route path="/doctors/:doctorid" element={<DoctorProfile />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route

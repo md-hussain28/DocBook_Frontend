@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Head from '../components/allDoctors/Head.tsx';
 import { doctors } from '../assets/assets_frontend/assets';
 import Body from '../components/allDoctors/Body.tsx';
+import { Outlet } from 'react-router-dom';
 
 const Doctors: React.FC = () => {
   const [search, setSearch] = useState('');
@@ -45,6 +46,7 @@ const Doctors: React.FC = () => {
 
   return (
     <div className="bg-cyan-50 min-h-screen pt-28 px-4 md:px-8">
+      <Outlet />
       <Head
         setSearch={setSearch}
         setSpecialityFilter={setSpecialityFilter}

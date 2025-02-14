@@ -15,3 +15,22 @@ export interface User {
   phone: string;
   appointments: Appointment[];
 }
+export interface DoctorCardProps {
+  doctor: Doctor;
+}
+
+export interface Doctor {
+  _id: string;
+  name: string;
+  image: string;
+  speciality: string;
+  degree: string;
+  experience: string;
+  about: string;
+  fees: number;
+  rating: number;
+  address: {
+    line1: string;
+    line2: string;
+  };
+}
